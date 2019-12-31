@@ -1,19 +1,22 @@
 name: CI
 
 on:
-  release:
-    types: [created]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '*/5 * * * *'
 
 jobs:
   build:
     runs-on: macos-latest
     steps:
-      - name: download ffmpeg
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+      - name: Download ffmpeg
         run: |
           curl https://ffmpeg.zeranoe.com/builds/macos64/dev/ffmpeg-4.2.1-macos64-dev.zip --output ffmpeg-4.2.1-macos64-dev.zip
           unzip ffmpeg-4.2.1-macos64-dev.zip
           cp -pr ffmpeg-4.2.1-macos64-dev/include/lib* include/
-      - name: build
+      - name: Build
         run: ./ci-scripts/build_and_install.sh
 
   
