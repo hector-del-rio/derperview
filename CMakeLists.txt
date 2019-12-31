@@ -9,6 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
 
 file(MAKE_DIRECTORY bin)
 include_directories("include")
+link_directories("link")
 
 if(UNIX)
     set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
