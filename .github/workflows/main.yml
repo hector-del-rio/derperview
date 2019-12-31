@@ -14,8 +14,11 @@ jobs:
       - name: Download ffmpeg
         run: |
           curl https://ffmpeg.zeranoe.com/builds/macos64/dev/ffmpeg-4.2.1-macos64-dev.zip --output ffmpeg-4.2.1-macos64-dev.zip
+          curl https://ffmpeg.zeranoe.com/builds/macos64/dev/ffmpeg-4.2.1-macos64-shared.zip --output ffmpeg-4.2.1-macos64-shared.zip
           unzip ffmpeg-4.2.1-macos64-dev.zip
+          unzip ffmpeg-4.2.1-macos64-shared.zip
           cp -pr ffmpeg-4.2.1-macos64-dev/include/lib* include/
+          cp -pr ffmpeg-4.2.1-macos64-shared/bin/* link/
       - name: Build
         run: ./ci-scripts/build_and_install.sh
 
