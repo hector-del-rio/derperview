@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: build with cmake
+      run: |
+        ./ci-scripts/build_and_install.sh
