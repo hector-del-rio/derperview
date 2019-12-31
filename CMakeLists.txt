@@ -9,7 +9,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
 
 file(MAKE_DIRECTORY bin)
 include_directories("include")
-include_directories("/usr/local/include")
 
 if(UNIX)
     set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
