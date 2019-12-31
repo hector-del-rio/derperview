@@ -8,7 +8,12 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: build with cmake
-      run: |
-        ./ci-scripts/build_and_install.sh
+      - name: download ffmpeg
+        run: |
+          curl https://ffmpeg.zeranoe.com/builds/macos64/dev/ffmpeg-4.2.1-macos64-dev.zip --output ffmpeg-4.2.1-macos64-dev.zip
+          unzip ffmpeg-4.2.1-macos64-dev.zip
+          cp -pr ffmpeg-4.2.1-macos64-dev/include/lib* include/
+      - name: build
+        run: ./ci-scripts/build_and_install.sh
+
+  
