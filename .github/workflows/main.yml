@@ -16,16 +16,13 @@ jobs:
         run: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         
       - name: Install ffmpeg
-        run: brew install ffmpeg
+        run: brew install ffmpeg || true
         
-#      - name: Download ffmpeg
-#        run: |
-#          curl https://ffmpeg.zeranoe.com/builds/macos64/dev/ffmpeg-4.2.1-macos64-dev.zip --output ffmpeg-4.2.1-macos64-dev.zip
-#          curl https://ffmpeg.zeranoe.com/builds/macos64/shared/ffmpeg-4.2.1-macos64-shared.zip --output ffmpeg-4.2.1-macos64-shared.zip
-#          unzip ffmpeg-4.2.1-macos64-dev.zip
-#          unzip ffmpeg-4.2.1-macos64-shared.zip
-#          cp -pr ffmpeg-4.2.1-macos64-dev/include/lib* include/
-#          cp -pr ffmpeg-4.2.1-macos64-shared/bin/* link/
+      - name: Download ffmpeg dev
+        run: |
+          curl https://ffmpeg.zeranoe.com/builds/macos64/dev/ffmpeg-4.2.1-macos64-dev.zip --output ffmpeg-4.2.1-macos64-dev.zip
+          unzip ffmpeg-4.2.1-macos64-dev.zip
+          cp -pr ffmpeg-4.2.1-macos64-dev/include/lib* include/
       
       - name: Build
         run: ./ci-scripts/build_and_install.sh
